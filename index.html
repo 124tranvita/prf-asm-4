@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="statics/style.css" />
+    <title>Simple NEWS - phuocthFX15563</title>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header></header>
+    <!-- HEADER -->
+
+    <!-- MENU BAR -->
+    <nav class="menu-wrapper">
+      <!-- Left menu items -->
+      <ul id="menuList" class="menu-list">
+        <li class="menu-item li-active">
+          <a href="#headlines"
+            ><img src="statics/logo.svg" alt="logo" width="32"
+          /></a>
+        </li>
+        <li class="menu-item"><a href="#politics-section">POLITICS</a></li>
+        <li class="menu-item"><a href="#sports-section">SPORTS</a></li>
+        <li class="menu-item"><a href="#entertainments-section">ENTS</a></li>
+      </ul>
+      <!-- Right menu items (Search) -->
+      <ul class="menu-list">
+        <li>
+          <!-- Input keywords-->
+          <input
+            id="searchKeyword"
+            class="search-input"
+            type="text"
+            placeholder="Search for news"
+          />
+          <!-- Input keywords-->
+        </li>
+      </ul>
+      <!-- Right menu items (Search) -->
+
+      <!-- Search Panel -->
+      <div id="newsSearchPanel" class="hidden">
+        <!-- Select Date -->
+        <div id="searchByDate" class="hidden">
+          <!-- Date From -->
+          <div class="row">
+            <label for="dateFrom">From</label>
+            <input
+              class="search-input"
+              type="date"
+              id="dateFrom"
+              name="dateFrom"
+            />
+          </div>
+          <!-- Date From -->
+
+          <!-- Date To -->
+          <div class="row">
+            <label for="dateTo">To</label>
+            <input class="search-input" type="date" id="dateTo" name="dateTo" />
+          </div>
+          <!-- Date To -->
+        </div>
+        <!-- Search Date -->
+
+        <!-- Include Date checkbox-->
+        <div class="row">
+          <input
+            type="checkbox"
+            id="byDate"
+            name="byDate"
+            value="byDate"
+            onclick="checkSearchByDate()"
+          />
+          <label for="byDate">Include Date</label>
+        </div>
+        <!-- Include Date checkbox-->
+
+        <!-- Search button-->
+        <div class="row text-center">
+          <button id="btnSearch" class="btn-search">Search</button>
+        </div>
+        <!-- Search button-->
+      </div>
+      <!-- Search Panel -->
+    </nav>
+    <!-- MENU BAR -->
+
+    <!-- SEARCH MODAL -->
+    <div class="modal-wrapper hidden">
+      <div id="showKeyword">
+        <h3>Search for</h3>
+      </div>
+      <button class="close-modal">&times;</button>
+      <ul id="foundArticles">
+        <li>
+          <div class="row">
+            <div class="col-3" id="foundArticleImage">
+              <img class="found-article-img" src="pic.jpg" alt="pic" />
+            </div>
+            <div class="col-sm-12 col-9">
+              <div class="found-article-content">
+                <h2>Title</h2>
+                <p>description</p>
+                <p class="text-main-color">Read more</p>
+                <p>news-publishAt</p>
+                <p>news-source</p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="row" style="text-align: center">
+        <button class="btn-close-modal">Close</button>
+      </div>
+    </div>
+    <!-- SEARCH MODAL -->
+
+    <!-- TOPLINE NEWS -->
+    <section class="headline-wrapper" id="headlines">
+      <!-- Slideshow container -->
+      <div class="slideshow-container">
+        <div class="test" id="firstSlide">
+          <!-- (Template)
+          <img src="#" alt="" id="headlineNewsImage"/>
+          <div class="content-first-slide">
+            <div class="text">
+              <h1>
+                <a href="#" target="_blank">title</a>
+              </h1>
+              <p></p>
+              <p class="publish-date">date</p>
+            </div>
+          </div>
+          -->
+        </div>
+        <div id="headline">
+          <div class="mySlides">
+            <!-- (Template)
+            <img src="#" alt="" />
+            <div class="content">
+              <div class="text">
+                <h1>
+                  <a href="#" target="_blank">title</a>
+                </h1>
+                <p></p>
+                <p class="publish-date">date</p>
+              </div>
+            </div>
+            -->
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <!-- The dots/circles -->
+      <div id="slideDot" style="text-align: center">
+        <!-- Slide Dot will return data here -->
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
+    <!-- TOPLINE NEWS -->
+
+    <!-- LATEST NEWS -->
+    <section class="latestNews-wrapper">
+      <div class="caption">
+        <h3>Latest News</h3>
+      </div>
+      <!-- Contents -->
+      <div class="row d-flex">
+        <!-- Pannel left-->
+        <div class="col-sm-12 col-m-3 col-2 d-flex">
+          <ul id="listLatestNews">
+            <!-- List of latest new image will show here-->
+          </ul>
+        </div>
+        <!-- Pannel left-->
+
+        <!-- Pannel right-->
+        <div class="col-sm-12 col-m-9 col-10 d-flex">
+          <div class="latest-news-content" id="latestNewsContent">
+            <!-- Detail of selected news will show here -->
+            <!-- (Template)
+            <img class="article-image" src="#" alt="latest-new-image" />
+            <div class="articles">
+              <div class="articles-content-wrapper">
+                <div class="article-title">
+                  <h1>titel</h1>
+                </div>
+                <div class="article-description">
+                  <p>description</p>
+                </div>
+                <div class="article-publishedAt">
+                  <p>date</p>
+                </div>
+                <div class="article-source">
+                  <p>url</p>
+                </div>
+              </div>
+            </div>
+            -->
+          </div>
+        </div>
+        <!-- Pannel right-->
+      </div>
+    </section>
+    <!-- LATEST NEWS -->
+
+    <!-- POLITICS NEWS -->
+    <section class="news-wrapper" id="politics-section">
+      <div class="caption">
+        <h3>Politics</h3>
+        <button id="politics" class="btn-news" name="politics">
+          <p>&#9776;</p>
+        </button>
+      </div>
+      <!-- Contents -->
+      <div class="row d-flex" id="politicsNews">
+        <!-- List of news will show here -->
+        <!-- (Template)
+        <div class="col-sm-12 col-m-6 col-4 news-content">
+          <img src="#" alt="news-image" />
+          <div class="news-title">title</div>
+          <div class="news-description">
+            description
+            <p><a href="#" target="_blank">Read more...</a></p>
+          </div>
+          <div class="news-publishAt">
+            <p>date</p>
+          </div>
+          <div class="news-source">
+            <p>url</p>
+          </div>
+        </div>
+        -->
+      </div>
+      <!-- Contents -->
+    </section>
+    <!-- POLITICS NEWS -->
+
+    <!-- SPORTS NEWS -->
+    <section class="news-wrapper" id="sports-section">
+      <div class="caption d-flex">
+        <h3>Sports</h3>
+        <button id="sports" class="btn-news" name="sports">
+          <p>&#9776;</p>
+        </button>
+      </div>
+      <!-- Contents -->
+      <div class="row d-flex" id="sportsNews">
+        <!-- List of news will show here -->
+        <!-- (Template)
+        <div class="col-sm-12 col-m-6 col-4 news-content">
+          <img src="#" alt="news-image" />
+          <div class="news-title">title</div>
+          <div class="news-description">
+            description
+            <p><a href="#" target="_blank">Read more...</a></p>
+          </div>
+          <div class="news-publishAt">
+            <p>date</p>
+          </div>
+          <div class="news-source">
+            <p>url</p>
+          </div>
+        </div>
+        -->
+      </div>
+      <!-- Contents -->
+    </section>
+    <!-- SPORTS NEWS -->
+
+    <!-- ENTERTAINMENT NEWS -->
+    <section class="news-wrapper" id="entertainments-section">
+      <div class="caption d-flex">
+        <h3>Entertainments</h3>
+        <button id="entertainments" class="btn-news" name="entertainments">
+          <p>&#9776;</p>
+        </button>
+      </div>
+      <!-- Contents -->
+      <div class="row d-flex" id="entertainmentsNews">
+        <!-- List of news will show here -->
+        <!-- (Template)
+        <div class="col-sm-12 col-m-6 col-4 news-content">
+          <img src="#" alt="news-image" />
+          <div class="news-title">title</div>
+          <div class="news-description">
+            description
+            <p><a href="#" target="_blank">Read more...</a></p>
+          </div>
+          <div class="news-publishAt">
+            <p>date</p>
+          </div>
+          <div class="news-source">
+            <p>url</p>
+          </div>
+        </div>
+        -->
+      </div>
+      <!-- Contents -->
+    </section>
+    <!-- ENTERTAINMENT NEWS -->
+
+    <!-- FOOTER -->
+    <footer class="info">
+      <p>Copyright © 2018-2022 GNews API. All Rights Reserved.</p>
+      <p>Simple NEWS - phuocthFX15563</p>
+    </footer>
+    <!-- FOOTER -->
+
+    <!-- LOADING -->
+    <div class="overlay">
+      <div class="loading">
+        <div class="loading-dot" id="loadingDot1"></div>
+        <div class="loading-dot" id="loadingDot2"></div>
+        <div class="loading-dot" id="loadingDot3"></div>
+      </div>
+    </div>
+    <!-- LOADING -->
+
+    <!-- OVERLAY WHEN MODAL CALLED -->
+    <div class="overlay-only hidden"></div>
+    <!-- OVERLAY WHEN MODAL CALLED -->
+
+    <script src="statics/script.js"></script>
+  </body>
+</html>
