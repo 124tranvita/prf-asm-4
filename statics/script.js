@@ -5,8 +5,8 @@
 /*** Registered token ***/
 /***********/
 
-// const token = "c539d252c8d0a7349c82e59ba7012c7a";
-const token = "0e13746a0fb36c8875e6d93887a79fee";
+const token = "c539d252c8d0a7349c82e59ba7012c7a";
+// const token = "0e13746a0fb36c8875e6d93887a79fee";
 
 /***********/
 /*** General Functions ***/
@@ -51,6 +51,8 @@ function getData(callback) {
       callback(data);
     })
     .catch(function (error) {
+      alert("Out of Request Quota!");
+      document.querySelector(".overlay").classList.remove("hidden");
       console.log(error);
     });
 }
@@ -249,7 +251,9 @@ function successfullyByType(data, articleType) {
   const template = articles.map(function (article) {
     return `<div class="col-sm-12 col-m-6 col-4 news-content">
                   <img src="${article.image}" alt="${article.title}" />
-                  <div class="news-title"><h3>${article.title}</h3></div>
+                  <div class="news-title">
+                    <a href="${article.url}" target="_blank"><h3>${article.title}</h3>
+                  </a></div>
                   <div class="news-description">
                     <p>${article.content}</p>
                     <p><a href="${article.url}" target="_blank">Read more...</a></p>
@@ -369,10 +373,12 @@ function searchArticles() {
         document.getElementById("foundArticles").innerHTML = foundArticle;
       }
 
+      // Hidden the Overlay loading
+      document.querySelector(".overlay").classList.add("hidden");
+      // Show the Overlay for Search modal
+      document.querySelector(".overlay-only").classList.remove("hidden");
       // Show the modal that content search result
       document.querySelector(".modal-wrapper").classList.remove("hidden");
-      // Show overlay
-      document.querySelector(".overlay-only").classList.remove("hidden");
       // Remove search panel
       document.querySelector("#newsSearchPanel").classList.add("hidden");
       // Scroll back to the top of page
@@ -409,7 +415,7 @@ function closeModal() {
   document.querySelector("#searchKeyword").value = "";
   // Hidden the Search Panel
   document.querySelector("#newsSearchPanel").classList.add("hidden");
-  // Hidden the Overlay for Search Modal
+  // Hidden the Overlay box
   document.querySelector(".overlay-only").classList.add("hidden");
   // Scroll back to top of page
   window.scrollTo(0, 0);
@@ -426,8 +432,27 @@ document.getElementById("searchKeyword").addEventListener("input", function () {
     document.getElementById("newsSearchPanel").classList.add("hidden");
   }
 });
+// Add Event to let user able to start searching via press Enter key
+document
+  .getElementById("searchKeyword")
+  .addEventListener("keyup", function (event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      if (!this.value) {
+        return;
+      }
+      searchArticles();
+      // Show the Overlay box
+      document.querySelector(".overlay").classList.remove("hidden");
+    }
+  });
 
-document.getElementById("btnSearch").addEventListener("click", searchArticles);
+// Add Event to let user start searching by click on Search button
+document.getElementById("btnSearch").addEventListener("click", function () {
+  searchArticles();
+  // Show the Overlay box
+  document.querySelector(".overlay").classList.remove("hidden");
+});
 
 // Add Event Close modal when user click on Close button
 document.querySelector(".close-modal").addEventListener("click", closeModal);

@@ -677,12 +677,12 @@ a:hover {
   }
 }
 
-.news-title > h3 {
+.news-title h3 {
   font-size: 150%;
 }
 
 @media screen and (min-width: 768px) {
-  .news-title > h3 {
+  .news-title h3 {
     position: absolute;
     left: 0.5rem;
     right: 0.5rem;
