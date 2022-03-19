@@ -1,3 +1,4 @@
+"use strict";
 /*** For testing ***/
 // const url = "articles.json";
 
